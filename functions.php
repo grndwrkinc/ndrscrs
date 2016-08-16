@@ -102,9 +102,22 @@ add_action( 'widgets_init', '_s_widgets_init' );
  * Enqueue scripts and styles.
  */
 function _s_scripts() {
-	wp_enqueue_style( '_s-style', get_stylesheet_uri() );
+	//Screen stylesheet
+	wp_enqueue_style( 'ndrscrs-style', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content/themes/ndrscrs/assets/css/style.css', array(), '1.1' );
 
-	wp_enqueue_script( '_s-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+	//Print stylesheet
+	wp_enqueue_style( 'ndrscrs-print-style', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content/themes/ndrscrs/assets/css/print.css', null, null, 'print' );
+
+	wp_enqueue_style('font-awesome', '//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+
+	//Deregister Wordpress baked-in JQuery and load from CDN
+	wp_deregister_script('jquery');
+   	wp_register_script('jquery', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js", false, null);
+   	wp_enqueue_script('jquery');
+
+	wp_enqueue_script( 'ndrscrs-navigation', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content/themes/ndrscrs/assets/js/navigation.js', array(), '20151215', true  );
+
+	wp_enqueue_script( 'fluidvids', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content/themes/ndrscrs/assets/js/fluidvids/dist/fluidvids.min.js', array(), '2.4.1', true);
 
 	wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
