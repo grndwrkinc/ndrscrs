@@ -117,6 +117,12 @@ function _s_scripts() {
 
 	wp_enqueue_script( 'ndrscrs-navigation', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content/themes/ndrscrs/assets/js/navigation.js', array(), '20151215', true  );
 
+	//Scrollmagic required JS
+	wp_register_script('greenSock', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content/themes/ndrscrs/assets/js/greensock/TweenMax.min.js', array(), '1.14.1', false);
+
+	wp_enqueue_script('ScrollMagic', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js", false, null);
+	wp_enqueue_script('ScrollMagicDebug', "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/plugins/debug.addIndicators.min.js", false, null);
+
 	wp_enqueue_script( 'fluidvids', 'http://' . $_SERVER['SERVER_NAME'] . '/wp-content/themes/ndrscrs/assets/js/fluidvids/dist/fluidvids.min.js', array(), '2.4.1', true);
 
 	wp_enqueue_script( '_s-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
